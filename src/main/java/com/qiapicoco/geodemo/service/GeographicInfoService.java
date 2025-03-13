@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.HashMap;
 @Service
 public class GeographicInfoService {
 
@@ -32,12 +32,18 @@ public class GeographicInfoService {
         FeatureCollection featureCollection = featureSource.getFeatures();
 
         List<GeographicInformationData> importedData = new ArrayList<>();
-        featureCollection.features().forEachRemaining(feature -> {
+        featureCollection.accepts(feature -> {
             GeographicInformationData data = new GeographicInformationData();
             // 假设这里根据实际情况从 feature 中提取数据并设置到 GeographicInformationData 实体
             // 例如：data.setDataName(feature.getAttribute("name").toString());
             importedData.add(data);
-        });
+        }, null);
+//        featureCollection.features().forEachRemaining(feature -> {
+//            GeographicInformationData data = new GeographicInformationData();
+//            // 假设这里根据实际情况从 feature 中提取数据并设置到 GeographicInformationData 实体
+//            // 例如：data.setDataName(feature.getAttribute("name").toString());
+//            importedData.add(data);
+//        });
 
         dataStore.dispose();
         tempFile.delete();

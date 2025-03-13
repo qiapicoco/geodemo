@@ -20,15 +20,6 @@ public class PermissionController {
     private static final Logger logger = LoggerFactory.getLogger(PermissionController.class);
 
     @PostMapping("/assign/{userId}/{permissionId}")
-    public ResponseEntity<UserPermissionAssociation> assignPermissionToUser(@PathVariable Integer userId, @PathVariable Integer permissionId) {
-        UserPermissionAssociation association = permissionService.assignPermissionToUser(userId, permissionId);
-        if (association != null) {
-            return new ResponseEntity<>(association, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping("/assign/{userId}/{permissionId}")
     public ResponseEntity<UserPermissionAssociation> assignPermissionToUser(
             @PathVariable(required = true) Integer userId,
             @PathVariable(required = true) Integer permissionId) {

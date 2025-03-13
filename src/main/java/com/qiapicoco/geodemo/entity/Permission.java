@@ -1,6 +1,6 @@
 package com.qiapicoco.geodemo.entity;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

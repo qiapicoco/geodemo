@@ -1,8 +1,9 @@
 package com.qiapicoco.geodemo.entity;
 
-import javax.persistence.*;
-// 复合主键类
-import javax.persistence.Embeddable;
+import jakarta.persistence.*;
+//import javax.persistence.*;
+//// 复合主键类
+//import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "UserPermissionAssociationTable")
 public class UserPermissionAssociation {
+
 
     @EmbeddedId
     private UserPermissionAssociationId id;

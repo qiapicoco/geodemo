@@ -1,6 +1,7 @@
 package com.qiapicoco.geodemo.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+//import javax.persistence.*;
 import java.util.Date;
 
 @Entity
