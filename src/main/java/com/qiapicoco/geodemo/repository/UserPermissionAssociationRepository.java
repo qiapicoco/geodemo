@@ -11,8 +11,8 @@ public interface UserPermissionAssociationRepository extends JpaRepository<UserP
     /**
      * 根据用户 ID 查找该用户的所有权限关联记录
      *
-     * @param userId 用户 ID
+     * @param user_Id 用户 ID
      * @return 权限关联记录列表
      */
-    List<UserPermissionAssociation> findByUserId(Integer userId);
+    List<UserPermissionAssociation> findByUserId(Integer user_Id);
 }

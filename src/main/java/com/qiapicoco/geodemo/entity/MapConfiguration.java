@@ -3,7 +3,8 @@ package com.qiapicoco.geodemo.entity;
 import jakarta.persistence.*;
 
 //import javax.persistence.*;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
+//import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "MapConfigurationTable")
