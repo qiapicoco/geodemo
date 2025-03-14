@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+
 @Service
 public class GeographicInfoService {
 
@@ -34,6 +35,7 @@ public class GeographicInfoService {
         List<GeographicInformationData> importedData = new ArrayList<>();
         featureCollection.accepts(feature -> {
             GeographicInformationData data = new GeographicInformationData();
+
             // 假设这里根据实际情况从 feature 中提取数据并设置到 GeographicInformationData 实体
             // 例如：data.setDataName(feature.getAttribute("name").toString());
             importedData.add(data);
@@ -53,7 +55,7 @@ public class GeographicInfoService {
 
     public GeographicInformationData updateData(Long dataId, GeographicInformationData updatedData) {
         return geographicInformationDataRepository.findById(dataId)
-               .map(data -> {
+                .map(data -> {
                     data.setDataName(updatedData.getDataName());
                     data.setDataType(updatedData.getDataType());
                     data.setDataDescription(updatedData.getDataDescription());
@@ -61,7 +63,7 @@ public class GeographicInfoService {
                     data.setGeographicCoordinateInfo(updatedData.getGeographicCoordinateInfo());
                     return geographicInformationDataRepository.save(data);
                 })
-               .orElse(null);
+                .orElse(null);
     }
 
     public boolean deleteData(Long dataId) {

@@ -34,9 +34,9 @@ CREATE TABLE UserPermissionAssociationTable (
     user_id INT COMMENT '用户ID，关联UserTable中的user_id',
     permission_id INT COMMENT '权限ID，关联PermissionTable中的permission_id',
     PRIMARY KEY (user_id, permission_id),
-    FOREIGN KEY (user_id) REFERENCES UserTable(user_id),
-    FOREIGN KEY (permission_id) REFERENCES PermissionTable(permission_id)
-);
+    FOREIGN KEY (user_id) REFERENCES UserTable(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (permission_id) REFERENCES PermissionTable(permission_id) ON DELETE CASCADE
+) ;
 
 -- 删除地理信息数据表，如果存在
 DROP TABLE IF EXISTS GeographicInformationDataTable;
@@ -144,7 +144,7 @@ VALUES
 INSERT INTO QueryRecordStorageTable (record_id, query_condition, query_time, query_result_storage_path)
 VALUES 
 (1, 'data_type = ''point''', '2024-01-03 14:00:00', '/query_results/point_data_query_20240103.csv'),
-(2, "data_name LIKE '%Park%'", '2024-01-04 15:00:00', '/query_results/park_data_query_20240104.csv');
+(2, 'data_name LIKE ''%Park%''', '2024-01-04 15:00:00', '/query_results/park_data_query_20240104.csv');
 
 -- 插入数据共享模块 - 数据共享记录表数据
 INSERT INTO DataSharingRecordTable (sharing_id, data_id, sharing_object, sharing_time, permission_level)

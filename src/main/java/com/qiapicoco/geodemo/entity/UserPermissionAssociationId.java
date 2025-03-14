@@ -1,4 +1,5 @@
 package com.qiapicoco.geodemo.entity;
+
 import jakarta.persistence.*;
 //import javax.persistence.Embeddable;
 import java.util.Objects;

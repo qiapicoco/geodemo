@@ -18,6 +18,12 @@ public class GeographicInfoController {
     @Autowired
     private GeographicInfoService geographicInfoService;
 
+    @GetMapping
+    public ResponseEntity<List<GeographicInformationData>> getAllGeographicInfo() {
+        List<GeographicInformationData> dataList = geographicInfoService.getAllGeographicInfo();
+        return new ResponseEntity<>(dataList, HttpStatus.OK);
+    }
+
     @PostMapping("/import")
     public ResponseEntity<List<GeographicInformationData>> importData(@RequestParam("file") MultipartFile file) {
         try {

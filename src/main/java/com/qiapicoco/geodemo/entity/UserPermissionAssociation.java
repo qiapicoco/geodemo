@@ -1,6 +1,7 @@
 package com.qiapicoco.geodemo.entity;
 
 import jakarta.persistence.*;
+
 //import javax.persistence.*;
 //// 复合主键类
 //import javax.persistence.Embeddable;
