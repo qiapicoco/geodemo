@@ -2,8 +2,6 @@ package com.qiapicoco.geodemo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qiapicoco.geodemo.dto.BackupRecordDto;
-import com.qiapicoco.geodemo.entity.DataBackupRecord;
-import com.qiapicoco.geodemo.service.DataBackupService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -38,12 +36,12 @@ public class BackupRecordControllerTest {
         backupRecordDto.setBackupType("Full Backup");
         backupRecordDto.setBackupTime(new Date());
 
-        DataBackupRecord savedRecord = new DataBackupRecord();
+        BackupRecord savedRecord = new BackupRecord();
         savedRecord.setBackupId(1);
         savedRecord.setBackupType("Full Backup");
         savedRecord.setBackupTime(new Date());
 
-        when(dataBackupService.saveBackupRecord(org.mockito.ArgumentMatchers.any(DataBackupRecord.class))).thenReturn(savedRecord);
+        when(dataBackupService.saveBackupRecord(org.mockito.ArgumentMatchers.any(BackupRecord.class))).thenReturn(savedRecord);
 
         mockMvc.perform(post("/api/backup-records")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -55,7 +53,7 @@ public class BackupRecordControllerTest {
 
     @Test
     public void testGetBackupRecordById() throws Exception {
-        DataBackupRecord record = new DataBackupRecord();
+        BackupRecord record = new BackupRecord();
         record.setBackupId(1);
         record.setBackupType("Full Backup");
 
@@ -69,15 +67,15 @@ public class BackupRecordControllerTest {
 
     @Test
     public void testGetAllBackupRecords() throws Exception {
-        DataBackupRecord record1 = new DataBackupRecord();
+        BackupRecord record1 = new BackupRecord();
         record1.setBackupId(1);
         record1.setBackupType("Full Backup");
 
-        DataBackupRecord record2 = new DataBackupRecord();
+        BackupRecord record2 = new BackupRecord();
         record2.setBackupId(2);
         record2.setBackupType("Incremental Backup");
 
-        List<DataBackupRecord> records = Arrays.asList(record1, record2);
+        List<BackupRecord> records = Arrays.asList(record1, record2);
 
         when(dataBackupService.getAllBackupRecords()).thenReturn(records);
 

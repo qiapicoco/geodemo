@@ -5,13 +5,7 @@ import jakarta.persistence.*;
 //import javax.persistence.*;
 //// 复合主键类
 //import javax.persistence.Embeddable;
-import java.io.Serializable;
-import java.util.Objects;
 
-import com.qiapicoco.geodemo.entity.User;
-import com.qiapicoco.geodemo.entity.Permission;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "UserPermissionAssociationTable")

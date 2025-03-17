@@ -2,7 +2,7 @@ package com.qiapicoco.geodemo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qiapicoco.geodemo.dto.MapConfigDto;
-import com.qiapicoco.geodemo.entity.MapConfiguration;
+import com.qiapicoco.geodemo.entity.MapConfig;
 import com.qiapicoco.geodemo.service.MapConfigService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +37,12 @@ public class MapConfigControllerTest {
         mapConfigDto.setConfigName("testConfig");
         mapConfigDto.setConfigValue("Test value");
 
-        MapConfiguration savedConfig = new MapConfiguration();
+        MapConfig savedConfig = new MapConfig();
         savedConfig.setConfigId(1);
         savedConfig.setConfigName("testConfig");
         savedConfig.setConfigValue("Test value");
 
-        when(mapConfigService.saveMapConfig(org.mockito.ArgumentMatchers.any(MapConfiguration.class))).thenReturn(savedConfig);
+        when(mapConfigService.saveMapConfig(org.mockito.ArgumentMatchers.any(MapConfig.class))).thenReturn(savedConfig);
 
         mockMvc.perform(post("/api/map-configs")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -54,7 +54,7 @@ public class MapConfigControllerTest {
 
     @Test
     public void testGetMapConfigById() throws Exception {
-        MapConfiguration config = new MapConfiguration();
+        MapConfig config = new MapConfig();
         config.setConfigId(1);
         config.setConfigName("testConfig");
 
@@ -68,15 +68,15 @@ public class MapConfigControllerTest {
 
     @Test
     public void testGetAllMapConfigs() throws Exception {
-        MapConfiguration config1 = new MapConfiguration();
+        MapConfig config1 = new MapConfig();
         config1.setConfigId(1);
         config1.setConfigName("config1");
 
-        MapConfiguration config2 = new MapConfiguration();
+        MapConfig config2 = new MapConfig();
         config2.setConfigId(2);
         config2.setConfigName("config2");
 
-        List<MapConfiguration> configs = Arrays.asList(config1, config2);
+        List<MapConfig> configs = Arrays.asList(config1, config2);
 
         when(mapConfigService.getAllMapConfigs()).thenReturn(configs);
 

@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "DataBackupRecordTable")
-public class DataBackupRecord {
+public class BackupRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

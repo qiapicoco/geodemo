@@ -1,7 +1,8 @@
 package com.qiapicoco.geodemo.service;
 
-import com.qiapicoco.geodemo.entity.MapConfiguration;
-import com.qiapicoco.geodemo.repository.MapConfigurationRepository;
+import com.qiapicoco.geodemo.entity.MapConfig;
+import com.qiapicoco.geodemo.repository.MapConfigRepository;
+import com.qiapicoco.geodemo.service.impl.MapConfigServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,52 +20,52 @@ import static org.mockito.Mockito.*;
 public class MapConfigServiceTest {
 
     @Mock
-    private MapConfigurationRepository mapConfigurationRepository;
+    private MapConfigRepository mapConfigRepository;
 
     @InjectMocks
     private MapConfigService mapConfigService = new MapConfigServiceImpl();
 
     @Test
     public void testSaveMapConfig() {
-        MapConfiguration config = new MapConfiguration();
+        MapConfig config = new MapConfig();
         config.setConfigName("testConfig");
-        when(mapConfigurationRepository.save(config)).thenReturn(config);
+        when(mapConfigRepository.save(config)).thenReturn(config);
 
-        MapConfiguration savedConfig = mapConfigService.saveMapConfig(config);
+        MapConfig savedConfig = mapConfigService.saveMapConfig(config);
         assertEquals("testConfig", savedConfig.getConfigName());
-        verify(mapConfigurationRepository, times(1)).save(config);
+        verify(mapConfigRepository, times(1)).save(config);
     }
 
     @Test
     public void testGetMapConfigById() {
-        MapConfiguration config = new MapConfiguration();
+        MapConfig config = new MapConfig();
         config.setConfigId(1);
         config.setConfigName("testConfig");
-        when(mapConfigurationRepository.findById(1)).thenReturn(Optional.of(config));
+        when(mapConfigRepository.findById(1)).thenReturn(Optional.of(config));
 
-        MapConfiguration foundConfig = mapConfigService.getMapConfigById(1);
+        MapConfig foundConfig = mapConfigService.getMapConfigById(1);
         assertEquals("testConfig", foundConfig.getConfigName());
-        verify(mapConfigurationRepository, times(1)).findById(1);
+        verify(mapConfigRepository, times(1)).findById(1);
     }
 
     @Test
     public void testGetAllMapConfigs() {
-        MapConfiguration config1 = new MapConfiguration();
+        MapConfig config1 = new MapConfig();
         config1.setConfigName("config1");
-        MapConfiguration config2 = new MapConfiguration();
+        MapConfig config2 = new MapConfig();
         config2.setConfigName("config2");
-        List<MapConfiguration> configs = Arrays.asList(config1, config2);
-        when(mapConfigurationRepository.findAll()).thenReturn(configs);
+        List<MapConfig> configs = Arrays.asList(config1, config2);
+        when(mapConfigRepository.findAll()).thenReturn(configs);
 
-        List<MapConfiguration> allConfigs = mapConfigService.getAllMapConfigs();
+        List<MapConfig> allConfigs = mapConfigService.getAllMapConfigs();
         assertEquals(2, allConfigs.size());
-        verify(mapConfigurationRepository, times(1)).findAll();
+        verify(mapConfigRepository, times(1)).findAll();
     }
 
     @Test
     public void testDeleteMapConfig() {
-        doNothing().when(mapConfigurationRepository).deleteById(1);
+        doNothing().when(mapConfigRepository).deleteById(1);
         mapConfigService.deleteMapConfig(1);
-        verify(mapConfigurationRepository, times(1)).deleteById(1);
+        verify(mapConfigRepository, times(1)).deleteById(1);
     }
 }

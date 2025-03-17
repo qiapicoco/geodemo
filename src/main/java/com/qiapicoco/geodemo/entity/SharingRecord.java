@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "DataSharingRecordTable")
-public class DataSharingRecord {
+public class SharingRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

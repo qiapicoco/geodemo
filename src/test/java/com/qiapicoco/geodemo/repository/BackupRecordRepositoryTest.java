@@ -1,6 +1,6 @@
 package com.qiapicoco.geodemo.repository;
 
-import com.qiapicoco.geodemo.entity.DataBackupRecord;
+import com.qiapicoco.geodemo.entity.BackupRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,22 +14,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BackupRecordRepositoryTest {
 
     @Autowired
-    private DataBackupRecordRepository dataBackupRecordRepository;
+    private BackupRecordRepository backupRecordRepository;
 
     @Test
-    public void testSaveDataBackupRecord() {
-        DataBackupRecord record = new DataBackupRecord();
+    public void testSaveBackupRecord() {
+        BackupRecord record = new BackupRecord();
         record.setBackupType("Full Backup");
-        DataBackupRecord savedRecord = dataBackupRecordRepository.save(record);
+        BackupRecord savedRecord = backupRecordRepository.save(record);
         assertEquals("Full Backup", savedRecord.getBackupType());
     }
 
     @Test
-    public void testGetDataBackupRecordById() {
-        DataBackupRecord record = new DataBackupRecord();
+    public void testGetBackupRecordById() {
+        BackupRecord record = new BackupRecord();
         record.setBackupType("Full Backup");
-        DataBackupRecord savedRecord = dataBackupRecordRepository.save(record);
-        Optional<DataBackupRecord> foundRecord = dataBackupRecordRepository.findById(savedRecord.getBackupId());
+        BackupRecord savedRecord = backupRecordRepository.save(record);
+        Optional<BackupRecord> foundRecord = backupRecordRepository.findById(savedRecord.getBackupId());
         assertTrue(foundRecord.isPresent());
         assertEquals("Full Backup", foundRecord.get().getBackupType());
     }

@@ -1,6 +1,6 @@
 package com.qiapicoco.geodemo.controller;
 
-import com.qiapicoco.geodemo.entity.DataSharingRecord;
+import com.qiapicoco.geodemo.entity.SharingRecord;
 import com.qiapicoco.geodemo.service.DataSharingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +22,8 @@ public class SharingRecordController {
      * @return 保存后的记录及状态码
      */
     @PostMapping
-    public ResponseEntity<DataSharingRecord> saveSharingRecord(@RequestBody DataSharingRecord record) {
-        DataSharingRecord savedRecord = dataSharingService.saveSharingRecord(record);
+    public ResponseEntity<SharingRecord> saveSharingRecord(@RequestBody SharingRecord record) {
+        SharingRecord savedRecord = dataSharingService.saveSharingRecord(record);
         return new ResponseEntity<>(savedRecord, HttpStatus.CREATED);
     }
 
@@ -33,8 +33,8 @@ public class SharingRecordController {
      * @return 对应的记录及状态码
      */
     @GetMapping("/{recordId}")
-    public ResponseEntity<DataSharingRecord> getSharingRecordById(@PathVariable Integer recordId) {
-        DataSharingRecord record = dataSharingService.getSharingRecordById(recordId);
+    public ResponseEntity<SharingRecord> getSharingRecordById(@PathVariable Integer recordId) {
+        SharingRecord record = dataSharingService.getSharingRecordById(recordId);
         if (record != null) {
             return new ResponseEntity<>(record, HttpStatus.OK);
         } else {
@@ -47,8 +47,8 @@ public class SharingRecordController {
      * @return 所有记录列表及状态码
      */
     @GetMapping
-    public ResponseEntity<List<DataSharingRecord>> getAllSharingRecords() {
-        List<DataSharingRecord> records = dataSharingService.getAllSharingRecords();
+    public ResponseEntity<List<SharingRecord>> getAllSharingRecords() {
+        List<SharingRecord> records = dataSharingService.getAllSharingRecords();
         return new ResponseEntity<>(records, HttpStatus.OK);
     }
 
