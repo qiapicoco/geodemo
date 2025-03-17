@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface DataBackupRecordRepository extends JpaRepository<DataBackupRecord, Long> {
-
+//    public interface DataBackupRecordRepository extends JpaRepository<DataBackupRecord, Integer> {
     /**
      * 根据数据 ID 查找该数据的所有备份记录
      *

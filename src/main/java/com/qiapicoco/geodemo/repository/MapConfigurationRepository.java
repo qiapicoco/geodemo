@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface MapConfigurationRepository extends JpaRepository<MapConfiguration, Long> {
-
+//    public interface MapConfigurationRepository extends JpaRepository<MapConfiguration, Integer> {
     /**
      * 根据地图类型查找地图配置
      *

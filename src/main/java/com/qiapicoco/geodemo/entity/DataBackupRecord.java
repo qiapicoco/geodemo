@@ -25,18 +25,22 @@ public class DataBackupRecord {
 
     // Getters and Setters
     public Long getBackupId() {
+
         return backupId;
     }
 
     public void setBackupId(Long backupId) {
+
         this.backupId = backupId;
     }
 
     public GeographicInformationData getData() {
+
         return data;
     }
 
     public void setData(GeographicInformationData data) {
+
         this.data = data;
     }
 
