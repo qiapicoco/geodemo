@@ -1,7 +1,8 @@
 package com.qiapicoco.geodemo.service;
 
-import com.qiapicoco.geodemo.entity.DataBackupRecord;
-import com.qiapicoco.geodemo.repository.DataBackupRecordRepository;
+import com.qiapicoco.geodemo.entity.BackupRecord;
+import com.qiapicoco.geodemo.repository.BackupRecordRepository;
+import com.qiapicoco.geodemo.service.impl.BackupRecordServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,52 +20,52 @@ import static org.mockito.Mockito.*;
 public class BackupRecordServiceTest {
 
     @Mock
-    private DataBackupRecordRepository dataBackupRecordRepository;
+    private BackupRecordRepository backupRecordRepository;
 
     @InjectMocks
     private BackupRecordService backupRecordService = new BackupRecordServiceImpl();
 
     @Test
     public void testSaveBackupRecord() {
-        DataBackupRecord record = new DataBackupRecord();
+        BackupRecord record = new BackupRecord();
         record.setBackupType("Full Backup");
-        when(dataBackupRecordRepository.save(record)).thenReturn(record);
+        when(backupRecordRepository.save(record)).thenReturn(record);
 
-        DataBackupRecord savedRecord = backupRecordService.saveBackupRecord(record);
+        BackupRecord savedRecord = backupRecordService.saveBackupRecord(record);
         assertEquals("Full Backup", savedRecord.getBackupType());
-        verify(dataBackupRecordRepository, times(1)).save(record);
+        verify(backupRecordRepository, times(1)).save(record);
     }
 
     @Test
     public void testGetBackupRecordById() {
-        DataBackupRecord record = new DataBackupRecord();
+        BackupRecord record = new BackupRecord();
         record.setBackupId(1);
         record.setBackupType("Full Backup");
-        when(dataBackupRecordRepository.findById(1)).thenReturn(Optional.of(record));
+        when(backupRecordRepository.findById(1)).thenReturn(Optional.of(record));
 
-        DataBackupRecord foundRecord = backupRecordService.getBackupRecordById(1);
+        BackupRecord foundRecord = backupRecordService.getBackupRecordById(1);
         assertEquals("Full Backup", foundRecord.getBackupType());
-        verify(dataBackupRecordRepository, times(1)).findById(1);
+        verify(backupRecordRepository, times(1)).findById(1);
     }
 
     @Test
     public void testGetAllBackupRecords() {
-        DataBackupRecord record1 = new DataBackupRecord();
+        BackupRecord record1 = new BackupRecord();
         record1.setBackupType("Full Backup");
-        DataBackupRecord record2 = new DataBackupRecord();
+        BackupRecord record2 = new BackupRecord();
         record2.setBackupType("Incremental Backup");
-        List<DataBackupRecord> records = Arrays.asList(record1, record2);
-        when(dataBackupRecordRepository.findAll()).thenReturn(records);
+        List<BackupRecord> records = Arrays.asList(record1, record2);
+        when(backupRecordRepository.findAll()).thenReturn(records);
 
-        List<DataBackupRecord> allRecords = backupRecordService.getAllBackupRecords();
+        List<BackupRecord> allRecords = backupRecordService.getAllBackupRecords();
         assertEquals(2, allRecords.size());
-        verify(dataBackupRecordRepository, times(1)).findAll();
+        verify(backupRecordRepository, times(1)).findAll();
     }
 
     @Test
     public void testDeleteBackupRecord() {
-        doNothing().when(dataBackupRecordRepository).deleteById(1);
+        doNothing().when(backupRecordRepository).deleteById(1);
         backupRecordService.deleteBackupRecord(1);
-        verify(dataBackupRecordRepository, times(1)).deleteById(1);
+        verify(backupRecordRepository, times(1)).deleteById(1);
     }
 }

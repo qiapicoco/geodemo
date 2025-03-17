@@ -2,6 +2,7 @@ package com.qiapicoco.geodemo.service;
 
 import com.qiapicoco.geodemo.entity.GeographicInformationData;
 import com.qiapicoco.geodemo.repository.GeographicInformationDataRepository;
+import com.qiapicoco.geodemo.service.impl.GeographicInfoServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

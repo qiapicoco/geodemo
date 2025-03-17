@@ -1,7 +1,7 @@
 package com.qiapicoco.geodemo.service.impl;
 
-import com.qiapicoco.geodemo.entity.MapConfiguration;
-import com.qiapicoco.geodemo.repository.MapConfigurationRepository;
+import com.qiapicoco.geodemo.entity.MapConfig;
+import com.qiapicoco.geodemo.repository.MapConfigRepository;
 import com.qiapicoco.geodemo.service.MapConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,25 +12,25 @@ import java.util.List;
 public class MapConfigServiceImpl implements MapConfigService {
 
     @Autowired
-    private MapConfigurationRepository mapConfigurationRepository;
+    private MapConfigRepository mapConfigRepository;
 
     @Override
-    public MapConfiguration saveMapConfig(MapConfiguration config) {
-        return mapConfigurationRepository.save(config);
+    public MapConfig saveMapConfig(MapConfig config) {
+        return mapConfigRepository.save(config);
     }
 
     @Override
-    public MapConfiguration getMapConfigById(Integer configId) {
-        return mapConfigurationRepository.findById(configId).orElse(null);
+    public MapConfig getMapConfigById(Integer configId) {
+        return mapConfigRepository.findById(configId).orElse(null);
     }
 
     @Override
-    public List<MapConfiguration> getAllMapConfigs() {
-        return mapConfigurationRepository.findAll();
+    public List<MapConfig> getAllMapConfigs() {
+        return mapConfigRepository.findAll();
     }
 
     @Override
     public void deleteMapConfig(Integer configId) {
-        mapConfigurationRepository.deleteById(configId);
+        mapConfigRepository.deleteById(configId);
     }
 }

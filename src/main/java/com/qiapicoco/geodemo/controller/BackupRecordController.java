@@ -1,7 +1,7 @@
 package com.qiapicoco.geodemo.controller;
 
-import com.qiapicoco.geodemo.entity.DataBackupRecord;
-import com.qiapicoco.geodemo.service.DataBackupService;
+import com.qiapicoco.geodemo.entity.BackupRecord;
+import com.qiapicoco.geodemo.service.BackupRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class BackupRecordController {
 
     @Autowired
-    private DataBackupService dataBackupService;
+    private BackupRecordService backupService;
 
     /**
      * 保存数据备份记录
@@ -22,8 +22,8 @@ public class BackupRecordController {
      * @return 保存后的记录及状态码
      */
     @PostMapping
-    public ResponseEntity<DataBackupRecord> saveBackupRecord(@RequestBody DataBackupRecord record) {
-        DataBackupRecord savedRecord = dataBackupService.saveBackupRecord(record);
+    public ResponseEntity<BackupRecord> saveBackupRecord(@RequestBody BackupRecord record) {
+        BackupRecord savedRecord = backupService.saveBackupRecord(record);
         return new ResponseEntity<>(savedRecord, HttpStatus.CREATED);
     }
 
@@ -33,8 +33,8 @@ public class BackupRecordController {
      * @return 对应的记录及状态码
      */
     @GetMapping("/{recordId}")
-    public ResponseEntity<DataBackupRecord> getBackupRecordById(@PathVariable Integer recordId) {
-        DataBackupRecord record = dataBackupService.getBackupRecordById(recordId);
+    public ResponseEntity<BackupRecord> getBackupRecordById(@PathVariable Integer recordId) {
+        BackupRecord record = backupService.getBackupRecordById(recordId);
         if (record != null) {
             return new ResponseEntity<>(record, HttpStatus.OK);
         } else {
@@ -47,8 +47,8 @@ public class BackupRecordController {
      * @return 所有记录列表及状态码
      */
     @GetMapping
-    public ResponseEntity<List<DataBackupRecord>> getAllBackupRecords() {
-        List<DataBackupRecord> records = dataBackupService.getAllBackupRecords();
+    public ResponseEntity<List<BackupRecord>> getAllBackupRecords() {
+        List<BackupRecord> records = backupService.getAllBackupRecords();
         return new ResponseEntity<>(records, HttpStatus.OK);
     }
 
@@ -59,7 +59,7 @@ public class BackupRecordController {
      */
     @DeleteMapping("/{recordId}")
     public ResponseEntity<Void> deleteBackupRecord(@PathVariable Integer recordId) {
-        dataBackupService.deleteBackupRecord(recordId);
+        backupService.deleteBackupRecord(recordId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

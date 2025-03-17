@@ -1,6 +1,6 @@
 package com.qiapicoco.geodemo.controller;
 
-import com.qiapicoco.geodemo.entity.MapConfiguration;
+import com.qiapicoco.geodemo.entity.MapConfig;
 import com.qiapicoco.geodemo.service.MapConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,14 @@ public class MapConfigController {
     private MapConfigService mapConfigService;
 
     @PostMapping
-    public ResponseEntity<MapConfiguration> saveMapConfig(@RequestBody MapConfiguration config) {
-        MapConfiguration savedConfig = mapConfigService.saveMapConfig(config);
+    public ResponseEntity<MapConfig> saveMapConfig(@RequestBody MapConfig config) {
+        MapConfig savedConfig = mapConfigService.saveMapConfig(config);
         return new ResponseEntity<>(savedConfig, HttpStatus.CREATED);
     }
 
     @GetMapping("/{configId}")
-    public ResponseEntity<MapConfiguration> getMapConfigById(@PathVariable Integer configId) {
-        MapConfiguration config = mapConfigService.getMapConfigById(configId);
+    public ResponseEntity<MapConfig> getMapConfigById(@PathVariable Integer configId) {
+        MapConfig config = mapConfigService.getMapConfigById(configId);
         if (config != null) {
             return new ResponseEntity<>(config, HttpStatus.OK);
         } else {
@@ -33,8 +33,8 @@ public class MapConfigController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MapConfiguration>> getAllMapConfigs() {
-        List<MapConfiguration> configs = mapConfigService.getAllMapConfigs();
+    public ResponseEntity<List<MapConfig>> getAllMapConfigs() {
+        List<MapConfig> configs = mapConfigService.getAllMapConfigs();
         return new ResponseEntity<>(configs, HttpStatus.OK);
     }
 

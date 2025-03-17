@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "MapConfigurationTable")
-public class MapConfiguration {
+public class MapConfig {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

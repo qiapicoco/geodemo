@@ -1,7 +1,7 @@
 package com.qiapicoco.geodemo.service.impl;
 
-import com.qiapicoco.geodemo.entity.DataBackupRecord;
-import com.qiapicoco.geodemo.repository.DataBackupRecordRepository;
+import com.qiapicoco.geodemo.entity.BackupRecord;
+import com.qiapicoco.geodemo.repository.BackupRecordRepository;
 import com.qiapicoco.geodemo.service.BackupRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,25 +12,25 @@ import java.util.List;
 public class BackupRecordServiceImpl implements BackupRecordService {
 
     @Autowired
-    private DataBackupRecordRepository dataBackupRecordRepository;
+    private BackupRecordRepository backupRecordRepository;
 
     @Override
-    public DataBackupRecord saveBackupRecord(DataBackupRecord record) {
-        return dataBackupRecordRepository.save(record);
+    public BackupRecord saveBackupRecord(BackupRecord record) {
+        return backupRecordRepository.save(record);
     }
 
     @Override
-    public DataBackupRecord getBackupRecordById(Integer backupId) {
-        return dataBackupRecordRepository.findById(backupId).orElse(null);
+    public BackupRecord getBackupRecordById(Integer backupId) {
+        return backupRecordRepository.findById(backupId).orElse(null);
     }
 
     @Override
-    public List<DataBackupRecord> getAllBackupRecords() {
-        return dataBackupRecordRepository.findAll();
+    public List<BackupRecord> getAllBackupRecords() {
+        return backupRecordRepository.findAll();
     }
 
     @Override
     public void deleteBackupRecord(Integer backupId) {
-        dataBackupRecordRepository.deleteById(backupId);
+        backupRecordRepository.deleteById(backupId);
     }
 }

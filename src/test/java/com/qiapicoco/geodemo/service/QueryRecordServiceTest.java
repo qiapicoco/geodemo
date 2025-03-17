@@ -2,6 +2,7 @@ package com.qiapicoco.geodemo.service;
 
 import com.qiapicoco.geodemo.entity.QueryRecordStorage;
 import com.qiapicoco.geodemo.repository.QueryRecordStorageRepository;
+import com.qiapicoco.geodemo.service.impl.QueryRecordServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

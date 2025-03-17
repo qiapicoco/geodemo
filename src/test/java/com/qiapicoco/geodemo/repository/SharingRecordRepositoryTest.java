@@ -1,6 +1,6 @@
 package com.qiapicoco.geodemo.repository;
 
-import com.qiapicoco.geodemo.entity.DataSharingRecord;
+import com.qiapicoco.geodemo.entity.SharingRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,22 +14,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SharingRecordRepositoryTest {
 
     @Autowired
-    private DataSharingRecordRepository dataSharingRecordRepository;
+    private SharingRecordRepository sharingRecordRepository;
 
     @Test
     public void testSaveDataSharingRecord() {
-        DataSharingRecord record = new DataSharingRecord();
+        SharingRecord record = new SharingRecord();
         // 设置记录属性
-        DataSharingRecord savedRecord = dataSharingRecordRepository.save(record);
+        SharingRecord savedRecord = sharingRecordRepository.save(record);
         // 验证属性
     }
 
     @Test
     public void testGetDataSharingRecordById() {
-        DataSharingRecord record = new DataSharingRecord();
+        SharingRecord record = new SharingRecord();
         // 设置记录属性
-        DataSharingRecord savedRecord = dataSharingRecordRepository.save(record);
-        Optional<DataSharingRecord> foundRecord = dataSharingRecordRepository.findById(savedRecord.getRecordId());
+        SharingRecord savedRecord = sharingRecordRepository.save(record);
+        Optional<SharingRecord> foundRecord = sharingRecordRepository.findById(savedRecord.getRecordId());
         assertTrue(foundRecord.isPresent());
         // 验证属性
     }

@@ -2,8 +2,7 @@ package com.qiapicoco.geodemo.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qiapicoco.geodemo.dto.SharingRecordDto;
-import com.qiapicoco.geodemo.entity.DataSharingRecord;
-import com.qiapicoco.geodemo.service.DataSharingService;
+import com.qiapicoco.geodemo.entity.SharingRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -26,7 +25,7 @@ public class SharingRecordControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private DataSharingService dataSharingService;
+    private DataSharingRecordService dataSharingRecordService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -36,11 +35,11 @@ public class SharingRecordControllerTest {
         SharingRecordDto sharingRecordDto = new SharingRecordDto();
         // 设置共享记录的相关属性
 
-        DataSharingRecord savedRecord = new DataSharingRecord();
+        SharingRecord savedRecord = new SharingRecord();
         savedRecord.setRecordId(1);
         // 设置保存后的共享记录的相关属性
 
-        when(dataSharingService.saveSharingRecord(org.mockito.ArgumentMatchers.any(DataSharingRecord.class))).thenReturn(savedRecord);
+        when(dataSharingRecordService.saveSharingRecord(org.mockito.ArgumentMatchers.any(SharingRecord.class))).thenReturn(savedRecord);
 
         mockMvc.perform(post("/api/sharing-records")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -51,11 +50,11 @@ public class SharingRecordControllerTest {
 
     @Test
     public void testGetSharingRecordById() throws Exception {
-        DataSharingRecord record = new DataSharingRecord();
+        SharingRecord record = new SharingRecord();
         record.setRecordId(1);
         // 设置共享记录的相关属性
 
-        when(dataSharingService.getSharingRecordById(1)).thenReturn(record);
+        when(dataSharingRecordService.getSharingRecordById(1)).thenReturn(record);
 
         mockMvc.perform(get("/api/sharing-records/1"))
                 .andExpect(status().isOk())
@@ -64,17 +63,17 @@ public class SharingRecordControllerTest {
 
     @Test
     public void testGetAllSharingRecords() throws Exception {
-        DataSharingRecord record1 = new DataSharingRecord();
+        SharingRecord record1 = new SharingRecord();
         record1.setRecordId(1);
         // 设置共享记录 1 的相关属性
 
-        DataSharingRecord record2 = new DataSharingRecord();
+        SharingRecord record2 = new SharingRecord();
         record2.setRecordId(2);
         // 设置共享记录 2 的相关属性
 
-        List<DataSharingRecord> records = Arrays.asList(record1, record2);
+        List<SharingRecord> records = Arrays.asList(record1, record2);
 
-        when(dataSharingService.getAllSharingRecords()).thenReturn(records);
+        when(dataSharingRecordService.getAllSharingRecords()).thenReturn(records);
 
         mockMvc.perform(get("/api/sharing-records"))
                 .andExpect(status().isOk())

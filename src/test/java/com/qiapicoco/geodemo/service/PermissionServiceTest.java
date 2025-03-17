@@ -2,6 +2,7 @@ package com.qiapicoco.geodemo.service;
 
 import com.qiapicoco.geodemo.entity.Permission;
 import com.qiapicoco.geodemo.repository.PermissionRepository;
+import com.qiapicoco.geodemo.service.impl.PermissionServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
