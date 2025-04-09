@@ -1,71 +1,109 @@
 package com.qiapicoco.geodemo.service;
 
-import com.qiapicoco.geodemo.entity.User;
-import com.qiapicoco.geodemo.repository.UserRepository;
-import com.qiapicoco.geodemo.service.impl.UserServiceImpl;
+
+import com.qiapicoco.geodemo.model.domain.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import javax.annotation.Resource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(MockitoExtension.class)
+/**
+ * 用户服务测试
+ */
+@SpringBootTest
 public class UserServiceTest {
 
-    @Mock
-    private UserRepository userRepository;
+    @Resource
+    private UserService userService;
 
-    @InjectMocks
-    private UserService userService = new UserServiceImpl();
-
+    /**
+     * 测试添加用户
+     */
     @Test
-    public void testSaveUser() {
+    public void testAddUser() {
         User user = new User();
-        user.setUsername("testUser");
-        when(userRepository.save(user)).thenReturn(user);
-
-        User savedUser = userService.saveUser(user);
-        assertEquals("testUser", savedUser.getUsername());
-        verify(userRepository, times(1)).save(user);
+        user.setUsername("dogqiapicoco");
+        user.setUserAccount("123");
+        user.setAvatarUrl("https://636f-codenav-8grj8px727565176-1256524210.tcb.qcloud.la/img/logo.png");
+        user.setGender(0);
+        user.setUserPassword("xxx");
+        user.setPhone("123");
+        user.setEmail("456");
+        boolean result = userService.save(user);
+        System.out.println(user.getId());
+        Assertions.assertTrue(result);
     }
 
+
+    /**
+     * 测试更新用户
+     */
     @Test
-    public void testGetUserById() {
+    public void testUpdateUser() {
         User user = new User();
-        user.setUserId(1);
-        user.setUsername("testUser");
-        when(userRepository.findById(1)).thenReturn(Optional.of(user));
-
-        User foundUser = userService.getUserById(1);
-        assertEquals("testUser", foundUser.getUsername());
-        verify(userRepository, times(1)).findById(1);
+        user.setId(1L);
+        user.setUsername("dogqiapicoco");
+        user.setUserAccount("123");
+        user.setAvatarUrl("https://636f-codenav-8grj8px727565176-1256524210.tcb.qcloud.la/img/logo.png");
+        user.setGender(0);
+        user.setUserPassword("xxx");
+        user.setPhone("123");
+        user.setEmail("456");
+        boolean result = userService.updateById(user);
+        Assertions.assertTrue(result);
     }
 
-    @Test
-    public void testGetAllUsers() {
-        User user1 = new User();
-        user1.setUsername("user1");
-        User user2 = new User();
-        user2.setUsername("user2");
-        List<User> users = Arrays.asList(user1, user2);
-        when(userRepository.findAll()).thenReturn(users);
-
-        List<User> allUsers = userService.getAllUsers();
-        assertEquals(2, allUsers.size());
-        verify(userRepository, times(1)).findAll();
-    }
-
+    /**
+     * 测试删除用户
+     */
     @Test
     public void testDeleteUser() {
-        doNothing().when(userRepository).deleteById(1);
-        userService.deleteUser(1);
-        verify(userRepository, times(1)).deleteById(1);
+        boolean result = userService.removeById(1L);
+        Assertions.assertTrue(result);
+    }
+
+
+    /**
+     * 测试获取用户
+     */
+    @Test
+    public void testGetUser() {
+        User user = userService.getById(1L);
+        Assertions.assertNotNull(user);
+    }
+
+    /**
+     * 测试用户注册
+     */
+    @Test
+    void userRegister() {
+        String userAccount = "qiapicoco";
+        String userPassword = "";
+        String checkPassword = "123456";
+        String planetCode = "1";
+        long result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
+        userAccount = "yu";
+        result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
+        userAccount = "qiapicoco";
+        userPassword = "123456";
+        result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
+        userAccount = "yu pi";
+        userPassword = "12345678";
+        result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
+        checkPassword = "123456789";
+        result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
+        userAccount = "dogqiapicoco";
+        checkPassword = "12345678";
+        result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
+        userAccount = "qiapicoco";
+        result = userService.userRegister(userAccount, userPassword, checkPassword, planetCode);
+        Assertions.assertEquals(-1, result);
     }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <trees>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/common" title="存放通用类" extension="" presentableText=""
+           tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/common/BaseResponse.java" title="封装统一的响应结果，方便前端处理"
+           extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/common/ErrorCode.java" title="错误码的类，用于统一管理错误信息"
+           extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/common/ResultUtils.java" title="工具类，用于生成响应结果"
+           extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/contant" title="存放常量类"/>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/contant/UserConstant.java" title="用户相关的常量定义"/>
+     <tree path="/src/main/java/com/qiapicoco/geodemo/controller" title="存放控制器类，处理 HTTP 请求"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/controller/UserController.java" title="处理用户相关的 HTTP 请求"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/exception" title="存放异常处理相关类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/exception/BusinessException.java" title="自定义业务异常类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/exception/GlobalExceptionHandler.java"
+          title="全局异常处理器，统一处理项目中的异常"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/mapper" title="存放 MyBatis 的 Mapper 接口"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/mapper/UserMapper.java" title="用户数据访问层的 Mapper 接口"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/model/domain" title="存放数据模型类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/model/domain/request" title="存放请求模型"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/model/domain/request/UserLoginRequest.java"
+          title="用户登录请求的模型类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/model/domain/request/UserRegisterRequest.java"
+          title="用户注册请求的模型类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/model/domain/User.java" title="用户实体类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/service/impl" title="存放业务逻辑层接口的实现类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/service" title="存放业务逻辑层接口"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/service/impl/UserServiceImpl.java" title="用户业务逻辑的实现类"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/service/UserService.java" title="用户业务逻辑层接口"/>
+    <tree path="/src/main/java/com/qiapicoco/geodemo/GeodemoApplication.java" title="项目的启动类"/>
+    <tree path="/src/main/resources" title="存放项目的资源文件"/>
+    <tree path="/src/main/resources/mapper" title="存放 MyBatis 的 XML 映射文件"/>
+    <tree path="/src/main/resources/mapper/UserMapper.xml" title="用户数据访问层的 XML 映射文件"/>
+    <tree path="/src/main/resources/application.yml" title="项目的配置文件"/>
+    <tree path="/src/test" title="存放项目的测试代码"/>
+    <tree path="/src/test/java/com/qiapicoco/geodemo/service" title="存放业务逻辑层的测试类"/>
+    <tree path="/src/test/java/com/qiapicoco/geodemo/service/UserServiceTest.java" title="用户业务逻辑层的测试类"/>
+    <tree path="/src/test/java/com/qiapicoco/geodemo/GeodemoApplicationTests.java" title="测试启动类"/>
+    <tree path="/target" title="Maven 编译后的输出目录"/>
+    <tree path="/target/classes" title="存放编译后的类文件"/>
+    <tree path="/target/generated-sources" title="存放生成的源代码"/>
+    <tree path="/target/generated-test-sources" title="存放生成的测试源代码"/>
+    <tree path="/target/maven-status" title="存放 Maven 编译状态信息"/>
+    <tree path="/target/surefire-reports" title="存放测试报告"/>
+    <tree path="/target/test-classes" title="存放编译后的测试类文件"/>
+    <tree path="/mvnw" title="Maven Wrapper 脚本，用于在没有安装 Maven 的环境中使用 Maven"/>
+    <tree path="/mvnw.cmd" title="Maven Wrapper 脚本，用于在没有安装 Maven 的环境中使用 Maven"/>
+    <tree path="/pom.xml" title="Maven 项目的配置文件，定义项目的依赖和构建信息"/>
+</trees>

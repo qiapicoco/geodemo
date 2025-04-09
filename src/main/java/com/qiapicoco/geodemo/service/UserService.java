@@ -1,43 +1,52 @@
 package com.qiapicoco.geodemo.service;
 
-import com.qiapicoco.geodemo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import com.qiapicoco.geodemo.entity.User;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.qiapicoco.geodemo.model.domain.User;
 
-import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 
-@Service
-public class UserService {
+/**
+ * 用户服务
+ *
 
-    @Autowired
-    private UserRepository userRepository;
+ */
+public interface UserService extends IService<User> {
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    /**
+     * 用户注册
+     *
+     * @param userAccount   用户账户
+     * @param userPassword  用户密码
+     * @param checkPassword 校验密码
+     * @param planetCode    星球编号
+     * @return 新用户 id
+     */
+    long userRegister(String userAccount, String userPassword, String checkPassword, String planetCode);
 
-    public User registerUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
+    /**
+     * 用户登录
+     *
+     * @param userAccount  用户账户
+     * @param userPassword 用户密码
+     * @param request
+     * @return 脱敏后的用户信息
+     */
+    User userLogin(String userAccount, String userPassword, HttpServletRequest request);
 
-    public Optional<User> authenticateUser(String username, String password) {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (passwordEncoder.matches(password, user.getPassword())) {
-                return userOptional;
-            }
-        }
-        return Optional.empty();
-    }
+    /**
+     * 用户脱敏
+     *
+     * @param originUser
+     * @return
+     */
+    User getSafetyUser(User originUser);
 
-    public Optional<User> getUserById(Integer userId) {
-        return userRepository.findById(userId);
-    }
 
-    public User updateUser(User user) {
-        return userRepository.save(user);
-    }
+    /**
+     * 用户注销
+     *
+     * @param request
+     * @return
+     */
+    int userLogout(HttpServletRequest request);
 }
